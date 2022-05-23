@@ -1,10 +1,24 @@
 import { useState } from "react"
 
-export default function Word({word: w}) { // :변수명 = 새로운 변수명으로 할당 (내부에 중복되는 변수명이 있을 경우 사용)
+interface IProps {
+    word: IWord;
+}
+
+interface IWord {
+    // 각 필드에 타입을 지정해주고, 값이 모두 입력되게 함
+    // (필드명 뒤에 ?를 붙이면 해당 필드는 생략 가능해지지만, 생각했던 로직과 달라질 수 있으므로 권장하지 않음)
+    id: number;
+    day: string;
+    eng: string;
+    kor: string;
+    isDone: boolean;
+}
+
+export default function Word({word: w}: IProps) { // :변수명 = 새로운 변수명으로 할당 (내부에 중복되는 변수명이 있을 경우 사용)
     const [word, setWord] = useState(w);
     const [isShow, setIsShow] = useState(false);
     const [isDone, setIsDone] = useState(word.isDone);
-
+    
     function toggleShow() {
         setIsShow(!isShow);
     }
@@ -32,7 +46,10 @@ export default function Word({word: w}) { // :변수명 = 새로운 변수명으
                 method : 'DELETE'
             }).then(res => {
                 if(res.ok) {
-                    setWord({id:0})
+                    setWord({
+                        ...word,
+                        id: 0
+                    })
                 }
             })
         }
