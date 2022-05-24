@@ -1,8 +1,9 @@
-export default function DisplayNumber() {
+// 기존 컴포넌트는 화면 표시에만 집중
+export default function DisplayNumber(props) {
     return (
       <div>
         <h1>Display Number</h1>
-        <input type="text" value="0" readOnly></input>
+        <input type="text" value={props.number} readOnly></input>
       </div>
     )
 }

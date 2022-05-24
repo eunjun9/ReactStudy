@@ -1,4 +1,4 @@
-import AddNumber from "./AddNumber";
+import AddNumber from "../container/AddNumber";
 
 export default function AddNumberRoot() {
     return (
